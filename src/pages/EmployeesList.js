@@ -85,6 +85,12 @@ const EmployeesList = () => {
         ) : (
           employees.map((employee) => (
             <div key={employee.id} className="employee-card">
+              <img
+                src={employee.profilePicture ? `http://localhost:5070/${employee.profilePicture}` : "/default-profile.png"}
+                alt="Profile"
+                className="profile-picture"
+              />
+
               <Link to={`/employees/${employee.id}`} className="employee-link">
                 #{employee.id} {employee.name} - {employee.jobTitle}
               </Link>

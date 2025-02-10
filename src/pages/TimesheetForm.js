@@ -43,17 +43,27 @@ const TimesheetForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const start = new Date(timesheet.startTime);
+    const end = new Date(timesheet.endTime);
 
-    console.log("Submitting Timesheet Data:", timesheet); // Debugging log
-
-    if (id) {
-      await updateTimesheet(id, timesheet);
-    } else {
-      await createTimesheet(timesheet);
+    if (start >= end) {
+      alert("❌ Error: Start Time must be before End Time!");
+      return;
     }
 
-    navigate("/timesheets");
+    try {
+      if (id) {
+        await updateTimesheet(id, timesheet);
+      } else {
+        await createTimesheet(timesheet);
+      }
+
+      navigate("/timesheets");
+    } catch (error) {
+      console.error("Error submitting timesheet:", error);
+    }
   };
+
 
 
   return (

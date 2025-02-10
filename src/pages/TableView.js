@@ -13,6 +13,7 @@ const TableView = ({ timesheets, onDelete }) => {
         <thead>
           <tr>
             <th>Employee ID</th>
+            <th>Employee Name</th>
             <th>Start Time</th>
             <th>End Time</th>
             <th>Summary</th>
@@ -23,6 +24,7 @@ const TableView = ({ timesheets, onDelete }) => {
           {timesheets.map((t) => (
             <tr key={t.id}>
               <td>{t.employeeId}</td>
+              <td>{t.employee?.name}</td>
               <td>{new Date(t.startTime).toLocaleString()}</td>
               <td>{new Date(t.endTime).toLocaleString()}</td>
               <td>{t.summary}</td>
