@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { deleteTimesheet, getTimesheets } from "../api/timesheets"; // Import delete API call
+import { deleteTimesheet, getTimesheets } from "../api/timesheets";
 import CalendarView from "./CalendarView";
 import TableView from "./TableView";
 
@@ -22,14 +22,13 @@ const TimesheetsList = () => {
     }
   };
 
-  // ✅ Delete Timesheet Function
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this timesheet?");
     if (!confirmDelete) return;
 
     try {
       await deleteTimesheet(id);
-      setTimesheets(timesheets.filter((t) => t.id !== id)); // Remove from UI
+      setTimesheets(timesheets.filter((t) => t.id !== id));
       console.log(`Timesheet with ID ${id} deleted successfully.`);
     } catch (error) {
       console.error("Error deleting timesheet:", error);

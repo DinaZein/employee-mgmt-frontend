@@ -58,11 +58,14 @@ const EmployeeForm = () => {
       alert("End date must be after start date.");
       return;
     }
+
     const updatedEmployee = {
       ...employee,
       salary: parseFloat(employee.salary)
     };
+
     const formData = new FormData();
+    if (id) formData.append("id", id);
     formData.append("name", updatedEmployee.name);
     formData.append("email", updatedEmployee.email);
     formData.append("phone", updatedEmployee.phone);
@@ -75,9 +78,9 @@ const EmployeeForm = () => {
     if (profilePicture) {
       formData.append("profilePicture", profilePicture);
     }
-    for (let pair of formData.entries()) {
-      console.log(pair[0], pair[1]);
-    }
+
+    console.log("Sending Employee Data:", Object.fromEntries(formData));
+
     try {
       if (id) {
         await updateEmployee(id, formData);
@@ -87,9 +90,9 @@ const EmployeeForm = () => {
 
       navigate("/employees");
     } catch (error) {
-      if (error.response && error.response.status === 400) {
-        console.log(error.response)
-        alert("Bad Request: Employee ID mismatch.");
+      if (error.response) {
+        console.log("Server Response:", error.response);
+        alert(error.response.data.title || "An error occurred.");
       } else {
         console.error("Error submitting form:", error);
       }

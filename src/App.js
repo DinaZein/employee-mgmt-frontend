@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import EmployeeForm from "./pages/EmployeeForm";
 import EmployeesList from "./pages/EmployeesList";
@@ -13,6 +13,9 @@ function App() {
       <Navbar />
       <div className="container mx-auto p-4">
         <Routes>
+          {/* Default redirect when visiting '/' */}
+          <Route path="/" element={<Navigate to="/employees" />} />
+
           <Route path="/employees" element={<EmployeesList />} />
           <Route path="/employees/new" element={<EmployeeForm />} />
           <Route path="/employees/:id" element={<EmployeeForm />} />

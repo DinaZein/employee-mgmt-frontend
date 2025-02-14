@@ -1,22 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../styles/EmployeeList.css"; // Import CSS file
+import "../styles/EmployeeList.css";
 
-const API_URL = "http://localhost:5070/api/employee"; // Adjust if needed
+const API_URL = "http://localhost:5070/api/employee";
 
 const EmployeesList = () => {
   const [employees, setEmployees] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const itemsPerPage = 5; // Adjust as needed
+  const itemsPerPage = 5;
 
   useEffect(() => {
     fetchEmployees();
   }, [searchTerm, currentPage]);
 
-  // Fetch employees from API
+
   const fetchEmployees = async () => {
     try {
       const response = await axios.get(`${API_URL}`, {
@@ -41,14 +41,13 @@ const EmployeesList = () => {
     }
   };
 
-  // Delete Employee Function
   const deleteEmployee = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this employee?");
     if (!confirmDelete) return;
 
     try {
       await axios.delete(`${API_URL}/${id}`);
-      setEmployees(employees.filter((emp) => emp.id !== id)); // Update UI after deletion
+      setEmployees(employees.filter((emp) => emp.id !== id));
       console.log(`Employee with ID ${id} deleted successfully.`);
     } catch (error) {
       console.error("Error deleting employee:", error);
@@ -96,7 +95,7 @@ const EmployeesList = () => {
               </Link>
               <button
                 className="delete-button"
-                onClick={() => deleteEmployee(employee.id)} // Attach event handler
+                onClick={() => deleteEmployee(employee.id)}
               >
                 Delete
               </button>

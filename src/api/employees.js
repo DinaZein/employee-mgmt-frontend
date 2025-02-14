@@ -18,16 +18,15 @@ export const createEmployee = async (formData) => {
 
     const response = await axios.post(API_URL, formData, {
       headers: {
-        "Content-Type": "multipart/form-data", // 🔹 Ensure correct content type
+        "Content-Type": "multipart/form-data",
       },
     });
 
-    console.log("✅ Employee Created Successfully:", response.data);
     return response.data;
   } catch (error) {
-    console.error("❌ Error Creating Employee:", error);
+    console.error("Error Creating Employee:", error);
     if (error.response) {
-      console.error("❌ Server Response:", error.response.data);
+      console.error("Server Response:", error.response.data);
     }
     throw error;
   }

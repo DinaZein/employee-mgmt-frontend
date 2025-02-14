@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5070/api/timesheet"; // Update with your backend port
+const API_URL = "http://localhost:5070/api/timesheet";
 
 export const getTimesheets = async () => {
   try {

@@ -9,7 +9,6 @@ const localizer = momentLocalizer(moment);
 const CalendarView = ({ timesheets }) => {
   const navigate = useNavigate();
 
-  // Convert timesheets to calendar events
   const events = timesheets.map((t) => ({
     id: t.id,
     title: `Timesheet for ${t.employee?.name || "Unknown"}`,
@@ -17,7 +16,7 @@ const CalendarView = ({ timesheets }) => {
     end: new Date(t.endTime),
   }));
 
-  // Handle event click
+
   const handleSelectEvent = (event) => {
     navigate(`/timesheets/${event.id}`);
   };
@@ -30,7 +29,7 @@ const CalendarView = ({ timesheets }) => {
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500 }}
-        onSelectEvent={handleSelectEvent} // Add this line to enable clicking
+        onSelectEvent={handleSelectEvent}
       />
     </div>
   );

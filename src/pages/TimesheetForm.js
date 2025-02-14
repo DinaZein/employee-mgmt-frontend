@@ -47,7 +47,7 @@ const TimesheetForm = () => {
     const end = new Date(timesheet.endTime);
 
     if (start >= end) {
-      alert("❌ Error: Start Time must be before End Time!");
+      alert("Error: Start Time must be before End Time!");
       return;
     }
 
